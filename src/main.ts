@@ -10,6 +10,7 @@ const settings = {
     return this.size * 0.8;
   },
   numberOfEntities: 0,
+  fps: 60,
 };
 const entries: Entries = [];
 
@@ -120,47 +121,58 @@ const checkIfGameIsOver = () => {
   return entries.every((entry) => entry.type === firstType);
 };
 
+const frameInterval = 1000 / settings.fps;
+let lastFrameTime = performance.now();
+
 const run = () => {
-  // const startTime = performance.now();
-  clearCanvas();
-  const gameOver = checkIfGameIsOver();
-  updatePosition();
-  checkCollision();
-  updateStats(entries);
+  const currentTime = performance.now();
+  const deltaTime = currentTime - lastFrameTime;
+  if (deltaTime >= frameInterval) {
+    lastFrameTime = currentTime - (deltaTime % frameInterval);
+    // const startTime = performance.now();
+    clearCanvas();
+    const gameOver = checkIfGameIsOver();
+    updatePosition();
+    checkCollision();
+    updateStats(entries);
 
-  ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  entries.forEach((entry) => {
-    ctx.font = `${settings.fontSize}px sans-serif`;
-    ctx.fillText(
-      ICONS[entry.type],
-      entry.position.x,
-      entry.position.y + settings.size / 2 + 8
-    );
-    // ctx.fillRect(entry.position.x, entry.position.y, settings.size, settings.size);
-  });
+    ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    entries.forEach((entry) => {
+      ctx.font = `${settings.fontSize}px sans-serif`;
+      ctx.fillText(
+        ICONS[entry.type],
+        entry.position.x,
+        entry.position.y + settings.size / 2 + 8
+      );
+      // ctx.fillRect(entry.position.x, entry.position.y, settings.size, settings.size);
+    });
 
-  // const endTime = performance.now();
-  // console.log(endTime - startTime);
+    // const endTime = performance.now();
+    // console.log(endTime - startTime);
 
-  if (!gameOver) {
-    requestAnimationFrame(run);
-  } else {
-    const title = document.querySelector("h2") as HTMLHeadingElement;
-    title.innerText = `${entries[0].type.toUpperCase()} WINS 🎆`;
-    const container = document.querySelector(
-      "#gameOverContainer"
-    ) as HTMLDivElement;
-    container.style.display = "flex";
+    if (gameOver) {
+      const title = document.querySelector("h2") as HTMLHeadingElement;
+      title.innerText = `${entries[0].type.toUpperCase()} WINS 🎆`;
+      const container = document.querySelector(
+        "#gameOverContainer"
+      ) as HTMLDivElement;
+      container.style.display = "flex";
 
-    celebrate(ICONS[entries[0].type]);
+      celebrate(ICONS[entries[0].type]);
 
-    document
-      .querySelector("#gameOverContainer button")
-      ?.addEventListener("click", initialize);
+      document
+        .querySelector("#gameOverContainer button")
+        ?.addEventListener("click", initialize);
 
-    document.getElementById("home")?.addEventListener("click", showStartScreen);
+      document
+        .getElementById("home")
+        ?.addEventListener("click", showStartScreen);
+      return;
+    }
   }
+
+  requestAnimationFrame(run);
 };
 
 const getRandomValue = (min: number, max: number): number => {
@@ -275,7 +287,7 @@ window.addEventListener("load", () => {
   ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
   const width = Math.min(window.innerWidth, 1200) - 20;
-  const height = Math.min(window.innerHeight, 580);
+  const height = Math.min(window.innerHeight - 150, 880) - 50;
   canvas.width = width;
   canvas.height = height;
 
