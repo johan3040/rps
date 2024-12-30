@@ -262,9 +262,9 @@ const showStartScreen = () => {
   const range = document.querySelector("input") as HTMLInputElement;
   const rangeValue = document.querySelector("span") as HTMLSpanElement;
 
-  rangeValue.innerText = `${range.value} fighters`;
+  rangeValue.innerHTML = `${range.value}`;
   range.addEventListener("input", () => {
-    rangeValue.innerText = `${range.value} fighters`;
+    rangeValue.innerHTML = `${range.value}`;
   });
 
   document.getElementById("startBtn")?.addEventListener("click", start);
