@@ -131,7 +131,6 @@ const run = () => {
   ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   entries.forEach((entry) => {
-    // ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
     ctx.font = `${settings.fontSize}px sans-serif`;
     ctx.fillText(
       ICONS[entry.type],
@@ -153,6 +152,7 @@ const run = () => {
       "#gameOverContainer"
     ) as HTMLDivElement;
     container.style.display = "flex";
+
     celebrate(ICONS[entries[0].type]);
 
     document
@@ -243,7 +243,6 @@ const start = () => {
   const rangeValue = document.querySelector("span") as HTMLSpanElement;
   settings.numberOfEntities = parseInt(rangeValue.innerText);
   settings.size = calculateSize(settings.numberOfEntities);
-  console.log(window.innerWidth, window.outerWidth);
   initialize();
 };
 
@@ -263,9 +262,9 @@ const showStartScreen = () => {
   const range = document.querySelector("input") as HTMLInputElement;
   const rangeValue = document.querySelector("span") as HTMLSpanElement;
 
-  rangeValue.innerText = range.value;
+  rangeValue.innerText = `${range.value} fighters`;
   range.addEventListener("input", () => {
-    rangeValue.innerText = range.value;
+    rangeValue.innerText = `${range.value} fighters`;
   });
 
   document.getElementById("startBtn")?.addEventListener("click", start);

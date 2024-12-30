@@ -69,6 +69,14 @@ canvas {
   background: rgba(0, 0, 0, 0.7);
 }
 
+#playContainer input {
+  width: clamp(200px, 50%, 600px);
+}
+
+#playContainer span {
+  font-size: 2rem;
+}
+
 #gameOverContainer {
   position: absolute;
   top: 0;
