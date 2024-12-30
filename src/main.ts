@@ -127,6 +127,9 @@ const run = () => {
   updatePosition();
   checkCollision();
   updateStats(entries);
+
+  ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
   entries.forEach((entry) => {
     // ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
     ctx.font = `${settings.fontSize}px sans-serif`;
