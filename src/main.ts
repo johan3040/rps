@@ -286,7 +286,7 @@ window.addEventListener("load", () => {
   canvas = document.getElementById("canvas") as HTMLCanvasElement;
   ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-  const width = Math.min(window.innerWidth, 1200) - 20;
+  const width = Math.min(window.innerWidth) - 20;
   const height = Math.min(window.innerHeight - 150, 880) - 50;
   canvas.width = width;
   canvas.height = height;
