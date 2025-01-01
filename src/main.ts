@@ -239,7 +239,7 @@ const initialize = () => {
 
 const calculateSize = (numberOfEntities: number): number => {
   const minSize = 5;
-  const maxSize = 35;
+  const maxSize = 25;
   const maxEntities = 2000;
   const minEntities = 3;
 
