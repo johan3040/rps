@@ -25,19 +25,33 @@ body {
   background: #111;
 }
 
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 200px;
+}
+
 canvas {
   border: 1px solid #000;
 }
 
 #stats {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-size: 2rem;
 }
 
 #stats p {
+  visibility: hidden;
+}
+
+#stats p.reveal {
   animation: pop 0.1s ease forwards;
-  transform: scale(0.3);
+  visibility: visible;
   transform-origin: center;
+  transform: scale(0.3);
 }
 
 @keyframes pop {

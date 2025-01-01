@@ -9,33 +9,35 @@
 </head>
 
 <body>
-  <div class="gameContainer">
-    <canvas id="canvas" width="1300" height="1140"></canvas>
-    <div id="gameOverContainer">
-      <h2 id="gameOverText"></h2>
-      <button type="button">🔁</button>
-      <button type="button" id="home">🏠</button>
+  <main>
+    <div class="gameContainer">
+      <canvas id="canvas" width="1300" height="1140"></canvas>
+      <div id="gameOverContainer">
+        <h2 id="gameOverText"></h2>
+        <button type="button">🔁</button>
+        <button type="button" id="home">🏠</button>
+      </div>
+      <div id="playContainer">
+        <button type="button" id="startBtn">Start Game🌈</button>
+        <input type="range" min="5" max="2000" value="5" class="slider" id="range" list="rangeList">
+        <datalist id="rangeList">
+          <option>5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+          <option>100</option>
+          <option>200</option>
+          <option>500</option>
+          <option>750</option>
+          <option>1000</option>
+          <option>1500</option>
+          <option>2000</option>
+        </datalist>
+        <span id="rangeValue"></span>
+      </div>
     </div>
-    <div id="playContainer">
-      <button type="button" id="startBtn">Start Game🌈</button>
-      <input type="range" min="5" max="2000" value="5" class="slider" id="range" list="rangeList">
-      <datalist id="rangeList">
-        <option>5</option>
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-        <option>100</option>
-        <option>200</option>
-        <option>500</option>
-        <option>750</option>
-        <option>1000</option>
-        <option>1500</option>
-        <option>2000</option>
-      </datalist>
-      <span id="rangeValue"></span>
-    </div>
-  </div>
-  <div id="stats"></div>
+    <div id="stats"></div>
+  </main>
   <script type="module" src="/src/main.ts"></script>
 </body>
 

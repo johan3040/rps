@@ -54,10 +54,13 @@ const getElements = () => {
 
 const setPositions = () => {
   const elements = getElements();
+  console.log(elements);
 
   elements.forEach((element, i) => {
-    const { x, y } = element.getBoundingClientRect();
+    const { x, y, height } = element.getBoundingClientRect();
+    console.log({ height });
     initialPositions[i] = { x, y };
+    console.log(x, y);
   });
 
   elements.forEach((element, i) => {
@@ -69,6 +72,10 @@ const setPositions = () => {
   elements.forEach((element) => {
     const { x, y } = element.getBoundingClientRect();
     latestPositions[element.getAttribute("data-type") as EntityType] = { x, y };
+  });
+
+  elements.forEach((element) => {
+    element.classList.add("reveal");
   });
 };
 
