@@ -54,13 +54,10 @@ const getElements = () => {
 
 const setPositions = () => {
   const elements = getElements();
-  console.log(elements);
 
   elements.forEach((element, i) => {
-    const { x, y, height } = element.getBoundingClientRect();
-    console.log({ height });
+    const { x, y } = element.getBoundingClientRect();
     initialPositions[i] = { x, y };
-    console.log(x, y);
   });
 
   elements.forEach((element, i) => {
